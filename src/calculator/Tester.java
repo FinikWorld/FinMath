@@ -13,16 +13,16 @@ public class Tester {
         Scanner cin = new Scanner(System.in);
         Parcer parcer = new Parcer();
         String input;
-        try {
-            while (!(input = cin.next()).equals("stop")) {
+        while (!(input = cin.next()).equals("stop")) {
+            try {
                 Variable result = parcer.calculator(input);
                 print(result);
 
+            } catch (Exceptions exceptions) {
+                System.out.println(exceptions.getMessage());
             }
         }
-        catch (Exceptions exceptions){
-            System.out.println(exceptions.getMessage());
-        }
+
 
 
         /*Integer b = new Integer(2);
