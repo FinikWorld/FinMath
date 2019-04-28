@@ -62,11 +62,10 @@ public class Matrix extends Variable {
                 }
                 return new Matrix(result);
             } else {
-                throw new Exceptions(Translator.MATRIX_PLUS_MATRIX);
+                throw new Exceptions(Translator.WRONG_SIZE);
             }
         }
 
-//        {{1,2,3},{1,2,3}}+{{2,2},{1,2}}
         if (other instanceof Scalar) {
             Scalar scalar = (Scalar) other;
             double[][] result = new double[this.mat.length][this.mat[0].length];
@@ -78,6 +77,10 @@ public class Matrix extends Variable {
             }
             return new Matrix(result);
         }
+        if (other instanceof Vector) {
+            throw new Exceptions((Translator.MATRIX_WRONG_OPERATION));
+        }
+
         return other.slogenie(this);
     }
 
@@ -85,15 +88,20 @@ public class Matrix extends Variable {
     public Variable vichitanie(Variable other) throws Exceptions {
         if (other instanceof Matrix) {
             Matrix matrix = (Matrix) other;
-            double[][] result = new double[this.mat.length][this.mat[0].length];
-            for (int i = 0; i < this.mat.length; i++) {
-                for (int j = 0; j < this.mat[i].length; j++) {
+            if ((this.mat[0].length == matrix.mat[0].length) && (this.mat.length == matrix.mat.length)) {
+                double[][] result = new double[this.mat.length][this.mat[0].length];
+                for (int i = 0; i < this.mat.length; i++) {
+                    for (int j = 0; j < this.mat[i].length; j++) {
 
-                    result[i][j] = this.mat[i][j] - matrix.mat[i][j];
+                        result[i][j] = this.mat[i][j] - matrix.mat[i][j];
 
+                    }
                 }
+                return new Matrix(result);
+            } else {
+                throw new Exceptions(Translator.WRONG_SIZE);
             }
-            return new Matrix(result);
+
 
         }
         if (other instanceof Scalar) {
@@ -106,6 +114,10 @@ public class Matrix extends Variable {
 
             }
             return new Matrix(result);
+        }
+
+        if (other instanceof Vector) {
+            throw new Exceptions((Translator.MATRIX_WRONG_OPERATION));
         }
         return other.vichitanie(this);
     }
@@ -122,7 +134,7 @@ public class Matrix extends Variable {
                     }
                 }
             } else
-                return other.umnogenie(this);
+                throw new Exceptions(Translator.WRONG_SIZE);
             return new Vector(result);
         }
 
@@ -139,17 +151,21 @@ public class Matrix extends Variable {
         }
         if (other instanceof Matrix) {
             Matrix matrix = (Matrix) other;
-            double[][] result = new double[this.mat.length][matrix.mat[0].length];
-            for (int i = 0; i < mat.length; i++) {
-                for (int j = 0; j < matrix.mat[0].length; j++) {
-                    for (int k = 0; k < matrix.mat.length; k++) {
-                        result[i][j] += this.mat[i][k] * matrix.mat[k][j];
+            if ((this.mat[0].length == matrix.mat[0].length) && (this.mat.length == matrix.mat.length)) {
+                double[][] result = new double[this.mat.length][matrix.mat[0].length];
+                for (int i = 0; i < mat.length; i++) {
+                    for (int j = 0; j < matrix.mat[0].length; j++) {
+                        for (int k = 0; k < matrix.mat.length; k++) {
+                            result[i][j] += this.mat[i][k] * matrix.mat[k][j];
+                        }
+
                     }
 
                 }
-
+                return new Matrix(result);
+            } else {
+                throw new Exceptions(Translator.WRONG_SIZE);
             }
-            return new Matrix(result);
         }
         return other.umnogenie(this);
     }
@@ -168,6 +184,10 @@ public class Matrix extends Variable {
             }
             return new Matrix(result);
         }
+        if (other instanceof Vector)
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+        if (other instanceof Matrix)
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
         return super.delenie(this);
     }
 }

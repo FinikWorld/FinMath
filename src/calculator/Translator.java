@@ -1,7 +1,9 @@
 package calculator;
 
 public class Translator {
-    public static final String MATRIX_PLUS_MATRIX = "IncorrectSize";
+    public static final String WRONG_SIZE = "IncorrectSize";
+    public static final String MATRIX_WRONG_OPERATION = "WrongOperation";
+
 
 
 

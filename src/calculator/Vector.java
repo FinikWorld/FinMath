@@ -37,13 +37,17 @@ public class Vector extends Variable {
     public Variable slogenie(Variable other) throws Exceptions {
         if (other instanceof Vector) {
             Vector vector = (Vector) other;
-            double[] result = new double[this.mas.length];
-            for (int i = 0; i < this.mas.length; i++) {
+            if (this.mas.length == vector.mas.length) {
+                double[] result = new double[this.mas.length];
+                for (int i = 0; i < this.mas.length; i++) {
 
-                result[i] = this.mas[i] + vector.mas[i];
+                    result[i] = this.mas[i] + vector.mas[i];
 
+                }
+                return new Vector(result);
+            } else {
+                throw new Exceptions(Translator.WRONG_SIZE);
             }
-            return new Vector(result);
 
         }
         if (other instanceof Scalar) {
@@ -56,6 +60,9 @@ public class Vector extends Variable {
             }
             return new Vector(result);
         }
+        if (other instanceof Matrix) {
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+        }
         return other.slogenie(this);
     }
 
@@ -63,13 +70,17 @@ public class Vector extends Variable {
     public Variable vichitanie(Variable other) throws Exceptions {
         if (other instanceof Vector) {
             Vector vector = (Vector) other;
-            double[] result = new double[this.mas.length];
-            for (int i = 0; i < this.mas.length; i++) {
+            if (this.mas.length == vector.mas.length) {
+                double[] result = new double[this.mas.length];
+                for (int i = 0; i < this.mas.length; i++) {
 
-                result[i] = this.mas[i] - vector.mas[i];
+                    result[i] = this.mas[i] - vector.mas[i];
 
+                }
+                return new Vector(result);
+            } else {
+                throw new Exceptions(Translator.WRONG_SIZE);
             }
-            return new Vector(result);
 
         }
         if (other instanceof Scalar) {
@@ -81,6 +92,9 @@ public class Vector extends Variable {
 
             }
             return new Vector(result);
+        }
+        if (other instanceof Matrix) {
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
         }
         return super.vichitanie(other);
     }
@@ -100,14 +114,31 @@ public class Vector extends Variable {
         }
         if (other instanceof Vector) {
             Vector vector = (Vector) other;
-            double result = 0;
-            for (int i = 0; i < this.mas.length; i++) {
+            if (this.mas.length == vector.mas.length) {
+                double result = 0;
+                for (int i = 0; i < this.mas.length; i++) {
 
-                result += this.mas[i] * vector.mas[i];
+                    result += this.mas[i] * vector.mas[i];
 
+                }
+                return new Scalar(result);
+            } else {
+                throw new Exceptions(Translator.WRONG_SIZE);
             }
-            return new Scalar(result);
 
+        }
+        if (other instanceof Matrix) {
+            Matrix matrix = (Matrix) other;
+            double[] result = new double[matrix.mat.length];
+            if (matrix.mat[0].length == this.mas.length) {
+                for (int i = 0; i < matrix.mat.length; i++) {
+                    for (int j = 0; j < matrix.mat[i].length; j++) {
+                        result[i] = result[i] + matrix.mat[i][j] * this.mas[j];
+                    }
+                }
+            } else
+                throw new Exceptions(Translator.WRONG_SIZE);
+            return new Vector(result);
         }
         return super.umnogenie(other);
     }
@@ -125,6 +156,12 @@ public class Vector extends Variable {
             }
             return new Vector(result);
 
+        }
+        if (other instanceof Matrix){
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+        }
+        if (other instanceof Vector){
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
         }
         return super.delenie(other);
     }

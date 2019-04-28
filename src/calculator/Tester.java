@@ -13,10 +13,15 @@ public class Tester {
         Scanner cin = new Scanner(System.in);
         Parcer parcer = new Parcer();
         String input;
-        while (!(input=cin.next()).equals("stop")){
-            Variable result = parcer.calculator(input);
-            print(result);
+        try {
+            while (!(input = cin.next()).equals("stop")) {
+                Variable result = parcer.calculator(input);
+                print(result);
 
+            }
+        }
+        catch (Exceptions exceptions){
+            System.out.println(exceptions.getMessage());
         }
 
 
