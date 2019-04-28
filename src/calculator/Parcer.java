@@ -18,6 +18,7 @@ public class Parcer {
                 case "-":return one.vichitanie(two);
                 case "*":return one.umnogenie(two);
                 case "/":return one.delenie(two);
+                case "sum":return one.summa(two);
             }
         }
 

@@ -28,6 +28,11 @@ public class Variable implements IOperation {
         return null;
     }
 
+    @Override
+    public Variable summa(Variable other) throws Exceptions {
+        return null;
+    }
+
     public static Variable createVar(String apparand) throws Exceptions {
         if (apparand.matches(Patterns.SCALAR))
             return new Scalar(apparand);

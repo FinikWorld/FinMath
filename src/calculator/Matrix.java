@@ -190,4 +190,19 @@ public class Matrix extends Variable {
             throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
         return super.delenie(this);
     }
+
+//    @Override
+//    public Variable summa(Variable other) throws Exceptions {
+//        if (other instanceof Matrix) {
+//            Matrix matrix = (Matrix) other;
+//            double result = 0;
+//            for (int i = 0; i < matrix.mat.length; i++) {
+//                for (int j = 0; j < matrix.mat[i].length; j++) {
+//                    result += matrix.mat[i][j];
+//                }
+//            }
+//            return new Scalar(result);
+//        }
+//        return null;
+//    }
 }
