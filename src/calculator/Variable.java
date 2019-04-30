@@ -1,8 +1,15 @@
 package calculator;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Variable implements IOperation {
+    static Map<String, Variable> vars = new HashMap<>();
+
+    public static void setVar(String oneStr, Variable two) {
+       vars.put(oneStr,two);
+    }
 
     @Override
     public Variable slogenie(Variable other) throws Exceptions {
@@ -40,6 +47,8 @@ public class Variable implements IOperation {
             return new Vector(apparand);
         if (apparand.matches(Patterns.MATRIX))
             return new Matrix(apparand);
+
+
 
 
         return null;
