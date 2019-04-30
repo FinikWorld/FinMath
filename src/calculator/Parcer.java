@@ -76,6 +76,6 @@ public class Parcer {
             case "/":
                 return one.delenie(two).toString();
         }
-        return null;
+        throw new Exceptions("Некоректный ввод");
     }
 }

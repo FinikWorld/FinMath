@@ -13,8 +13,8 @@ public class Variable implements IOperation {
 
     @Override
     public Variable slogenie(Variable other) throws Exceptions {
-        System.out.println("Сложение " + this + " + " + other + " невозможно");
-        return null;
+        throw new Exceptions("Сложение " + this + " + " + other + " невозможно");
+//        throw new Exceptions("Некоректный ввод");
     }
 
     @Override
@@ -47,10 +47,10 @@ public class Variable implements IOperation {
             return new Vector(apparand);
         if (apparand.matches(Patterns.MATRIX))
             return new Matrix(apparand);
+        Variable variable=vars.get(apparand);
+        if (variable==null)
+            throw new  Exceptions("Непонятный операнд "+apparand);
+        return variable;
 
-
-
-
-        return null;
     }
 }
