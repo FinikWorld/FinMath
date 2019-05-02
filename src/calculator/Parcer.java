@@ -12,6 +12,7 @@ public class Parcer {
             this.put("-", 1);
             this.put("*", 2);
             this.put("/", 2);
+            this.put("s", 3);
 
         }
     };
@@ -33,7 +34,7 @@ public class Parcer {
 
             return null;
         }
-        while (opertions.size()>0){
+        while (opertions.size() > 0) {
             int number = getPriority(opertions);
             String operation = opertions.remove(number);
             String one = operands.remove(number);
@@ -61,11 +62,14 @@ public class Parcer {
 
     private String oneOperation(String oneStr, String operation, String twoStr) throws Exceptions, Exceptions {
         Variable two = Variable.createVar(twoStr);
+        Variable one = null;
         if (operation.equals("=")) {
             Variable.setVar(oneStr, two);
             return two.toString();
         }
-        Variable one = Variable.createVar(oneStr);
+        if (!oneStr.isEmpty()) {
+            one = Variable.createVar(oneStr);
+        }
         switch (operation) {
             case "+":
                 return one.slogenie(two).toString();
@@ -75,8 +79,8 @@ public class Parcer {
                 return one.umnogenie(two).toString();
             case "/":
                 return one.delenie(two).toString();
-            case "summ":
-                return one.summa(one).toString();
+            case "s":
+                return two.summa(two).toString();
         }
         throw new Exceptions("Некоректный ввод");
     }

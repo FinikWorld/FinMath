@@ -17,6 +17,8 @@ public class Variable implements IOperation {
 //        throw new Exceptions("Некоректный ввод");
     }
 
+    // Вместо sout, пробрасывай Exeptions, как показано выше
+
     @Override
     public Variable vichitanie(Variable other) throws Exceptions {
         System.out.println("Вычитание " + this + " - " + other + " невозможно");
@@ -37,7 +39,7 @@ public class Variable implements IOperation {
 
     @Override
     public Variable summa(Variable other) throws Exceptions {
-        System.out.println("Сумма равна "+this);
+//        System.out.println("Сумма равна "+this);
         return null;
     }
 

@@ -165,4 +165,16 @@ public class Vector extends Variable {
         }
         return super.delenie(other);
     }
+
+    @Override
+    public Variable summa(Variable other) throws Exceptions {
+        if (other instanceof Vector){
+            double rez = 0;
+            for (int i = 0; i < ((Vector) other).mas.length; i++) {
+                rez+=((Vector) other).mas[i];
+            }
+            return new Scalar(rez);
+        }
+        throw new Exceptions("НЕльзя провести операцию с даннм операндом");
+    }
 }
