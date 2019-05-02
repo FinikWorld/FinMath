@@ -40,7 +40,8 @@ public class Scalar extends Variable {
             double result=this.b-chislo.b;
             return new Scalar (result);
         }
-        return super.vichitanie(other);
+        return super.vichitanie(other);//тут не по суперу нужно а по other на this, и учесть то что 5-4 это не одно итоже что 4-5
+//        return other.vichitanie(this).umnogenie(new Scalar(-1));//тут не по суперу нужно а по other на this,
     }
 
     @Override
