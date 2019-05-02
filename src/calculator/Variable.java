@@ -37,6 +37,7 @@ public class Variable implements IOperation {
 
     @Override
     public Variable summa(Variable other) throws Exceptions {
+        System.out.println("Сумма равна "+this);
         return null;
     }
 

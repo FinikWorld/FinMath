@@ -75,6 +75,8 @@ public class Parcer {
                 return one.umnogenie(two).toString();
             case "/":
                 return one.delenie(two).toString();
+            case "summ":
+                return one.summa(one).toString();
         }
         throw new Exceptions("Некоректный ввод");
     }
