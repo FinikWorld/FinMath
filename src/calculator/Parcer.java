@@ -21,22 +21,21 @@ public class Parcer {
 
         List<String> asList = Arrays.asList(string.split(Patterns.OPERATIONS));
         List<String> operands = new ArrayList<>(asList);
-        List<String> opertions = new ArrayList<>();
+        List<String> operations = new ArrayList<>();
 
 
         Pattern pattern = Pattern.compile(Patterns.OPERATIONS);
         Matcher matcher = pattern.matcher(string);
         while (matcher.find()) {
-
-            opertions.add(matcher.group());
+            operations.add(matcher.group());
         }
-        if (opertions.size() == 0) {
-
-            return null;
+        if (operations.size() == 0) {
+//                return null;
+            return Variable.createVar(string).toString();
         }
-        while (opertions.size() > 0) {
-            int number = getPriority(opertions);
-            String operation = opertions.remove(number);
+        while (operations.size() > 0) {
+            int number = getPriority(operations);
+            String operation = operations.remove(number);
             String one = operands.remove(number);
             String two = operands.get(number);
             String res = oneOperation(one, operation, two);

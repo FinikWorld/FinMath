@@ -1,5 +1,6 @@
 package calculator;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Tester {
@@ -8,12 +9,14 @@ public class Tester {
 
     }
 
-    public static void main(String[] args) throws Exceptions {
+    public static void main(String[] args) throws Exceptions, IOException {
         /*Matrix mat= new Matrix("{{2,3,4},{3,4,5}}");
         System.out.println(mat.summa(mat));*/
         System.out.println("Введите пример");
         Scanner cin = new Scanner(System.in);
         Parcer parcer = new Parcer();
+
+        Variable.readVarsFile();
         String input;
         while (!(input = cin.next()).equals("stop")) {
             try {
@@ -24,6 +27,7 @@ public class Tester {
                 System.out.println(exceptions.getMessage());
             }
         }
+        Variable.saveVar();
 
 
 

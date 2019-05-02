@@ -140,7 +140,7 @@ public class Vector extends Variable {
                 throw new Exceptions(Translator.WRONG_SIZE);
             return new Vector(result);
         }
-        return super.umnogenie(other);
+        return other.umnogenie(this);
     }
 
     @Override
