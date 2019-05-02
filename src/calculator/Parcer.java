@@ -1,27 +1,81 @@
 package calculator;
 
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parcer {
-    public Variable calculator(String string) throws Exceptions {
-        String[] apparands = string.split(Patterns.OPERATIONS);
-        Variable one = Variable.createVar(apparands[0]);
-        Variable two = Variable.createVar(apparands[1]);
+    private final Map<String, Integer> priority = new HashMap<String, Integer>() {
+        {
+            this.put("=", 0);
+            this.put("+", 1);
+            this.put("-", 1);
+            this.put("*", 2);
+            this.put("/", 2);
+
+        }
+    };
+
+    public String calculator(String string) throws Exceptions {
+
+        List<String> asList = Arrays.asList(string.split(Patterns.OPERATIONS));
+        List<String> operands = new ArrayList<>(asList);
+        List<String> opertions = new ArrayList<>();
+
 
         Pattern pattern = Pattern.compile(Patterns.OPERATIONS);
         Matcher matcher = pattern.matcher(string);
-        if (matcher.find()){
-            String operation = matcher.group();
-            switch (operation){
-                case "+":return one.slogenie(two);
-                case "-":return one.vichitanie(two);
-                case "*":return one.umnogenie(two);
-                case "/":return one.delenie(two);
-                case "sum":return one.summa(two);
+        while (matcher.find()) {
+
+            opertions.add(matcher.group());
+        }
+        if (opertions.size() == 0) {
+
+            return null;
+        }
+        while (opertions.size()>0){
+            int number = getPriority(opertions);
+            String operation = opertions.remove(number);
+            String one = operands.remove(number);
+            String two = operands.get(number);
+            String res = oneOperation(one, operation, two);
+            operands.set(number, res);
+        }
+        return operands.get(0);
+    }
+
+    private int getPriority(List<String> opertions) {
+        //=+-*/
+        int index = 0;
+        int currentPriority = -1;
+        for (int i = 0; i < opertions.size(); i++) {
+            String op = opertions.get(i);
+            Integer prioroty = priority.get(op);
+            if (prioroty > currentPriority) {
+                index = i;
+                currentPriority = prioroty;
             }
         }
+        return index;
+    }
 
-        return null;
+    private String oneOperation(String oneStr, String operation, String twoStr) throws Exceptions, Exceptions {
+        Variable two = Variable.createVar(twoStr);
+        if (operation.equals("=")) {
+            Variable.setVar(oneStr, two);
+            return two.toString();
+        }
+        Variable one = Variable.createVar(oneStr);
+        switch (operation) {
+            case "+":
+                return one.slogenie(two).toString();
+            case "-":
+                return one.vichitanie(two).toString();
+            case "*":
+                return one.umnogenie(two).toString();
+            case "/":
+                return one.delenie(two).toString();
+        }
+        throw new Exceptions("Некоректный ввод");
     }
 }

@@ -1,13 +1,20 @@
 package calculator;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Variable implements IOperation {
+    static Map<String, Variable> vars = new HashMap<>();
+
+    public static void setVar(String oneStr, Variable two) {
+       vars.put(oneStr,two);
+    }
 
     @Override
     public Variable slogenie(Variable other) throws Exceptions {
-        System.out.println("Сложение " + this + " + " + other + " невозможно");
-        return null;
+        throw new Exceptions("Сложение " + this + " + " + other + " невозможно");
+//        throw new Exceptions("Некоректный ввод");
     }
 
     @Override
@@ -40,8 +47,10 @@ public class Variable implements IOperation {
             return new Vector(apparand);
         if (apparand.matches(Patterns.MATRIX))
             return new Matrix(apparand);
+        Variable variable=vars.get(apparand);
+        if (variable==null)
+            throw new  Exceptions("Непонятный операнд "+apparand);
+        return variable;
 
-
-        return null;
     }
 }
