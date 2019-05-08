@@ -1,6 +1,11 @@
 package calculator;
 
+import calculator.resource.ResourseManager;
+import calculator.resource.Translator;
+
+import javax.xml.soap.Text;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Tester {
@@ -12,10 +17,32 @@ public class Tester {
     public static void main(String[] args) throws Exceptions, IOException {
         /*Matrix mat= new Matrix("{{2,3,4},{3,4,5}}");
         System.out.println(mat.summa(mat));*/
-        System.out.println("Введите пример");
+        ResourseManager resourseManager =ResourseManager.INSTANCE;
+        String userLocal = Locale.getDefault().toString();
+        Locale locale;
         Scanner cin = new Scanner(System.in);
-        Parcer parcer = new Parcer();
+        print("Какой язык выбираете en, ru, be?");
 
+        userLocal = cin.next();
+        switch (userLocal){
+            case "en":
+                locale = new Locale("en","EN");
+                break;
+            case "ru":
+                locale = new Locale("ru","RU");
+                break;
+            case "be":
+                locale = new Locale("be","BY");
+                break;
+            default:
+                print("Выюрана неправельная локаль, по этому стандартная");
+                locale=Locale.getDefault();
+                break;
+        }
+        resourseManager.setLocale(locale);
+//        System.out.println(.get(TextTranslate.END));
+        System.out.println(resourseManager.get(Translator.START));
+        Parcer parcer = new Parcer();
         Variable.readVarsFile();
         String input;
         while (!(input = cin.next()).equals("stop")) {

@@ -1,0 +1,3 @@
+IncorrectSize= не сапраудны размер
+WrongOperation= Памылковая аперацыя
+start=прымер?
