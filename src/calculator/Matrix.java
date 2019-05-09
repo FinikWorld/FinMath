@@ -1,5 +1,7 @@
 package calculator;
 
+import calculator.resource.Translator;
+
 public class Matrix extends Variable {
     double[][] mat;
 

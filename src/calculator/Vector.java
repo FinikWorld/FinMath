@@ -1,5 +1,7 @@
 package calculator;
 
+import calculator.resource.Translator;
+
 public class Vector extends Variable {
     double[] mas;
 
