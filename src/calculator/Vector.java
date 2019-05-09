@@ -160,7 +160,17 @@ public class Vector extends Variable {
 
         }
         if (other instanceof Matrix) {
-            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+            Matrix matrix = (Matrix) other;
+            double[] result = new double[matrix.mat.length];
+            if (matrix.mat[0].length == this.mas.length) {
+                for (int i = 0; i < matrix.mat.length; i++) {
+                    for (int j = 0; j < matrix.mat[i].length; j++) {
+                        result[i] = result[i] + (1 / matrix.mat[i][j]) * this.mas[j];
+                    }
+                }
+            } else
+                throw new Exceptions(Translator.WRONG_SIZE);
+            return new Vector(result);
         }
         if (other instanceof Vector) {
             if (other instanceof Vector) {

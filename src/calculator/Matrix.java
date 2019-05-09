@@ -186,8 +186,19 @@ public class Matrix extends Variable {
             }
             return new Matrix(result);
         }
-        if (other instanceof Vector)
-            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+            if (other instanceof Vector) {
+                Vector vector = (Vector) other;
+                double[] result = new double[this.mat.length];
+                if (vector.mas.length == this.mat[0].length) {
+                    for (int i = 0; i < this.mat.length; i++) {
+                        for (int j = 0; j < this.mat[i].length; j++) {
+                            result[i] = result[i] + this.mat[i][j] * (1 / vector.mas[j]);
+                        }
+                    }
+                } else
+                    throw new Exceptions(Translator.WRONG_SIZE);
+                return new Vector(result);
+            }
         if (other instanceof Matrix) {
             Matrix matrix = (Matrix) other;
             if ((this.mat[0].length == matrix.mat[0].length) && (this.mat.length == matrix.mat.length)) {
