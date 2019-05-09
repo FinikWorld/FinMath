@@ -159,21 +159,34 @@ public class Vector extends Variable {
             return new Vector(result);
 
         }
-        if (other instanceof Matrix){
+        if (other instanceof Matrix) {
             throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
         }
-        if (other instanceof Vector){
-            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+        if (other instanceof Vector) {
+            if (other instanceof Vector) {
+                Vector vector = (Vector) other;
+                if (this.mas.length == vector.mas.length) {
+                    double result = 0;
+                    for (int i = 0; i < this.mas.length; i++) {
+
+                        result += this.mas[i] * (1 / vector.mas[i]);
+
+                    }
+                    return new Scalar(result);
+                } else {
+                    throw new Exceptions(Translator.WRONG_SIZE);
+                }
+            }
         }
         return super.delenie(other);
     }
 
     @Override
     public Variable summa(Variable other) throws Exceptions {
-        if (other instanceof Vector){
+        if (other instanceof Vector) {
             double rez = 0;
             for (int i = 0; i < ((Vector) other).mas.length; i++) {
-                rez+=((Vector) other).mas[i];
+                rez += ((Vector) other).mas[i];
             }
             return new Scalar(rez);
         }

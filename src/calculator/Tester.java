@@ -3,8 +3,6 @@ package calculator;
 import calculator.resource.ResourseManager;
 import calculator.resource.Translator;
 
-
-//import javax.xml.soap.Text; // что это? не знаю
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;
@@ -18,7 +16,7 @@ public class Tester {
     public static void main(String[] args) throws Exceptions, IOException {
         /*Matrix mat= new Matrix("{{2,3,4},{3,4,5}}");
         System.out.println(mat.summa(mat));*/
-        ResourseManager resourseManager =ResourseManager.INSTANCE;
+       /*ResourseManager resourseManager = ResourseManager.INSTANCE;
         String userLocal = Locale.getDefault().toString();
         Locale locale;
         Scanner cin = new Scanner(System.in);
@@ -40,9 +38,10 @@ public class Tester {
                 locale=Locale.getDefault();
                 break;
         }
-        resourseManager.setLocale(locale);
+        resourseManager.setLocale(locale);*/
 //        System.out.println(get(TextTranslate.END));
-        System.out.println(resourseManager.get(Translator.START));
+        Scanner cin = new Scanner(System.in);
+        //System.out.println(resourseManager.get(Translator.START));
         Parcer parcer = new Parcer();
         Variable.readVarsFile();
         String input;

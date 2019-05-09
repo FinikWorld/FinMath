@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 public enum ResourseManager {
 
     INSTANCE;
-    private ResourseManager(){setLocale(Locale.getDefault());}
+    ResourseManager(){setLocale(Locale.getDefault());}
 
     public ResourceBundle resourceBundle;
 

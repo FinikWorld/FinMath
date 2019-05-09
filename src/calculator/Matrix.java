@@ -188,8 +188,24 @@ public class Matrix extends Variable {
         }
         if (other instanceof Vector)
             throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
-        if (other instanceof Matrix)
-            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+        if (other instanceof Matrix) {
+            Matrix matrix = (Matrix) other;
+            if ((this.mat[0].length == matrix.mat[0].length) && (this.mat.length == matrix.mat.length)) {
+                double[][] result = new double[this.mat.length][matrix.mat[0].length];
+                for (int i = 0; i < mat.length; i++) {
+                    for (int j = 0; j < matrix.mat[0].length; j++) {
+                        for (int k = 0; k < matrix.mat.length; k++) {
+                            result[i][j] += this.mat[i][k] * (1 / matrix.mat[k][j]);
+                        }
+
+                    }
+
+                }
+                return new Matrix(result);
+            } else {
+                throw new Exceptions(Translator.WRONG_SIZE);
+            }
+        }
         return super.delenie(this);
     }
 
