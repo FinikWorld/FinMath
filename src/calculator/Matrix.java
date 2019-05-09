@@ -108,7 +108,7 @@ public class Matrix extends Variable {
             Scalar scalar = (Scalar) other;
             double[][] result = new double[this.mat.length][this.mat[0].length];
             for (int i = 0; i < this.mat.length; i++) {
-                for (int j = 0; j < this.mat[j].length; j++) {
+                for (int j = 0; j < this.mat[i].length; j++) {
                     result[i][j] = this.mat[i][j] - scalar.b;
                 }
 

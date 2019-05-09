@@ -29,6 +29,18 @@ public class Scalar extends Variable {
           double result=chislo.b + this.b;
           return new Scalar (result);
         }
+        if (other instanceof Matrix)
+        {
+            Matrix matrix = (Matrix) other;
+            double[][] result = new double[matrix.mat.length][matrix.mat[0].length];
+            for (int i = 0; i < matrix.mat.length; i++) {
+                for (int j = 0; j < matrix.mat[i].length; j++) {
+                    result[i][j] = matrix.mat[i][j] + this.b;
+                }
+
+            }
+            return new Matrix(result);
+        }
         return other.slogenie(this);
     }
 
@@ -40,8 +52,12 @@ public class Scalar extends Variable {
             double result=this.b-chislo.b;
             return new Scalar (result);
         }
-        return other.vichitanie(this);//тут не по суперу нужно а по other на this, и учесть то что 5-4 это не одно итоже что 4-5
-//        return other.vichitanie(this).umnogenie(new Scalar(-1));//тут не по суперу нужно а по other на this,
+        if (other instanceof Matrix)
+        {
+            Matrix matrix = (Matrix) other;
+            return other.vichitanie(this).umnogenie(new Scalar(-1));
+        }
+        return other.vichitanie(this);
     }
 
     @Override
