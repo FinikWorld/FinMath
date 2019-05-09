@@ -100,5 +100,17 @@ public class Scalar extends Variable {
         }
         return super.delenie(other);
     }
+
+    @Override
+    public Variable kvadrat(Variable other) throws Exceptions {
+        if (other instanceof Scalar)
+        {
+            Scalar chislo = (Scalar) other;
+            double result = this.b*chislo.b;
+            return new Scalar(result);
+        }
+        else
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+    }
 }
 

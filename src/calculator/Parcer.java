@@ -80,6 +80,8 @@ public class Parcer {
                 return one.delenie(two).toString();
             case "s":
                 return two.summa(two).toString();
+            case "k":
+                return two.kvadrat(two).toString();
         }
         throw new Exceptions("Некоректный ввод");
     }
