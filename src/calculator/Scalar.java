@@ -34,14 +34,15 @@ public class Scalar extends Variable {
         if (other instanceof Matrix)
         {
             Matrix matrix = (Matrix) other;
-            double[][] result = new double[matrix.mat.length][matrix.mat[0].length];
+            return other.slogenie(this);
+            /*double[][] result = new double[matrix.mat.length][matrix.mat[0].length];
             for (int i = 0; i < matrix.mat.length; i++) {
                 for (int j = 0; j < matrix.mat[i].length; j++) {
                     result[i][j] = matrix.mat[i][j] + this.b;
                 }
 
             }
-            return new Matrix(result);
+            return new Matrix(result);*/
         }
         return other.slogenie(this);
     }

@@ -3,7 +3,8 @@ package calculator;
 import calculator.resource.ResourseManager;
 import calculator.resource.Translator;
 
-import javax.xml.soap.Text;
+
+//import javax.xml.soap.Text; // что это? не знаю
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;
