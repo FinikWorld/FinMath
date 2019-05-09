@@ -25,24 +25,19 @@ public class Scalar extends Variable {
 
     @Override
     public Variable slogenie(Variable other) throws Exceptions {
-        if (other instanceof Scalar)
-        {
-          Scalar chislo = (Scalar) other;
-          double result=chislo.b + this.b;
-          return new Scalar (result);
+        if (other instanceof Scalar) {
+            Scalar chislo = (Scalar) other;
+            double result = chislo.b + this.b;
+            return new Scalar(result);
         }
-        if (other instanceof Matrix)
-        {
+        if (other instanceof Matrix) {
             Matrix matrix = (Matrix) other;
             return other.slogenie(this);
-            /*double[][] result = new double[matrix.mat.length][matrix.mat[0].length];
-            for (int i = 0; i < matrix.mat.length; i++) {
-                for (int j = 0; j < matrix.mat[i].length; j++) {
-                    result[i][j] = matrix.mat[i][j] + this.b;
-                }
-
-            }
-            return new Matrix(result);*/
+        }
+        if (other instanceof Vector)
+        {
+            Vector vector=(Vector) other;
+            return other.slogenie(this);
         }
         return other.slogenie(this);
     }
@@ -60,6 +55,11 @@ public class Scalar extends Variable {
             Matrix matrix = (Matrix) other;
             return other.vichitanie(this).umnogenie(new Scalar(-1));
         }
+        if (other instanceof Vector)
+        {
+            Vector vector=(Vector) other;
+            return other.vichitanie(this).umnogenie(new Scalar(-1));
+        }
         return other.vichitanie(this);
     }
 
@@ -74,14 +74,12 @@ public class Scalar extends Variable {
         if (other instanceof Matrix)
         {
             Matrix matrix = (Matrix) other;
-            double[][] result = new double[matrix.mat.length][matrix.mat[0].length];
-            for (int i = 0; i < matrix.mat.length; i++) {
-                for (int j = 0; j < matrix.mat[i].length; j++) {
-                    result[i][j] = matrix.mat[i][j] * this.b;
-                }
-
-            }
-            return new Matrix(result);
+            return other.umnogenie(this);
+        }
+        if (other instanceof Vector)
+        {
+            Vector vector=(Vector) other;
+            return other.umnogenie(this);
         }
         return super.umnogenie(other);
     }
@@ -96,6 +94,10 @@ public class Scalar extends Variable {
         }
         if (other instanceof Matrix)
             throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+        if (other instanceof Vector)
+        {
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+        }
         return super.delenie(other);
     }
 }

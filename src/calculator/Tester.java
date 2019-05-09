@@ -41,7 +41,7 @@ public class Tester {
                 break;
         }
         resourseManager.setLocale(locale);
-//        System.out.println(.get(TextTranslate.END));
+//        System.out.println(get(TextTranslate.END));
         System.out.println(resourseManager.get(Translator.START));
         Parcer parcer = new Parcer();
         Variable.readVarsFile();
