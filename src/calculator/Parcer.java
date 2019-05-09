@@ -81,7 +81,7 @@ public class Parcer {
             case "s":
                 return two.summa(two).toString();
             case "k":
-                return two.kvadrat(two).toString();
+                return one.kvadrat(two).toString();
         }
         throw new Exceptions("Некоректный ввод");
     }
