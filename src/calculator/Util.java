@@ -1,24 +1,25 @@
-package calculator;
+
 
 import java.io.File;
 
 public class Util {
-    private Util(){}
+    private Util() {
+    }
 
-    static String getPath(Class<?> clazz){
+    static String getPath(Class<?> clazz) {
         String simpleName = clazz.getSimpleName();
-        String path = clazz.getName().replace(simpleName,"");
-        path=path.replace(".",File.separator);
+        String path = clazz.getName().replace(simpleName, "");
+        path = path.replace(".", File.separator);
         String root = System.getProperty("user.dir");
-        String rezultat = root+File.separator+"src"+File.separator+path;
+        String rezultat = root + File.separator + "src" + File.separator + path;
         return rezultat;
     }
 
-    static String getPath(){
+    static String getPath() {
         return getPath(Util.class);
     }
 
-    static String getPath(String fileName){
-        return getPath()+fileName;
+    static String getPath(String fileName) {
+        return getPath() + fileName;
     }
 }

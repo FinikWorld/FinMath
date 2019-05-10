@@ -1,5 +1,3 @@
-package calculator;
-
 import calculator.resource.ResourseManager;
 import calculator.resource.Translator;
 
@@ -16,11 +14,11 @@ public class Tester {
     public static void main(String[] args) throws Exceptions, IOException {
         /*Matrix mat= new Matrix("{{2,3,4},{3,4,5}}");
         System.out.println(mat.summa(mat));*/
-        ResourseManager resourseManager = ResourseManager.INSTANCE;
-        String userLocal = Locale.getDefault().toString();
+//        ResourseManager resourseManager = ResourseManager.INSTANCE;
+       /* String userLocal = Locale.getDefault().toString();
         Locale locale;
-        Scanner cin = new Scanner(System.in);
-        print("Какой язык выбираете en, ru, be?");
+        Scanner cin = new Scanner(System.in);*/
+        /*print("Какой язык выбираете en, ru, be?");
 
         userLocal = cin.next();
         switch (userLocal){
@@ -40,8 +38,9 @@ public class Tester {
         }
         resourseManager.setLocale(locale);
 //        System.out.println(resourseManager.get(Translator.END));
-        //Scanner cin = new Scanner(System.in);
-        System.out.println(resourseManager.get(Translator.START));
+
+//        System.out.println(resourseManager.get(Translator.START));*/
+        Scanner cin = new Scanner(System.in);
         Parcer parcer = new Parcer();
         Variable.readVarsFile();
         String input;

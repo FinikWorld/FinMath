@@ -1,4 +1,4 @@
-package calculator;
+
 
 import calculator.resource.Translator;
 

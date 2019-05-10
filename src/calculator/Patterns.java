@@ -1,4 +1,4 @@
-package calculator;
+
 
 final class Patterns {
     private Patterns() {

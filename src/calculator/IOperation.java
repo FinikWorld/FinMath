@@ -1,4 +1,3 @@
-package calculator;
 
 public interface IOperation {
     public Variable slogenie(Variable other) throws Exceptions;

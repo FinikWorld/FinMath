@@ -1,4 +1,4 @@
-package calculator;
+
 
 public class Translator {
     public static final String WRONG_SIZE = "IncorrectSize";

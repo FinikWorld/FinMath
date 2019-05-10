@@ -1,9 +1,8 @@
-package calculator;
+
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Variable implements IOperation {
     static Map<String, Variable> vars = new HashMap<>(); //Карта переменных в вайле
