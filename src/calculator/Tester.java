@@ -16,7 +16,7 @@ public class Tester {
     public static void main(String[] args) throws Exceptions, IOException {
         /*Matrix mat= new Matrix("{{2,3,4},{3,4,5}}");
         System.out.println(mat.summa(mat));*/
-       /*ResourseManager resourseManager = ResourseManager.INSTANCE;
+        ResourseManager resourseManager = ResourseManager.INSTANCE;
         String userLocal = Locale.getDefault().toString();
         Locale locale;
         Scanner cin = new Scanner(System.in);
@@ -38,10 +38,10 @@ public class Tester {
                 locale=Locale.getDefault();
                 break;
         }
-        resourseManager.setLocale(locale);*/
-//        System.out.println(get(TextTranslate.END));
-        Scanner cin = new Scanner(System.in);
-        //System.out.println(resourseManager.get(Translator.START));
+        resourseManager.setLocale(locale);
+//        System.out.println(resourseManager.get(Translator.END));
+        //Scanner cin = new Scanner(System.in);
+        System.out.println(resourseManager.get(Translator.START));
         Parcer parcer = new Parcer();
         Variable.readVarsFile();
         String input;
