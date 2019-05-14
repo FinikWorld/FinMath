@@ -186,19 +186,19 @@ public class Matrix extends Variable {
             }
             return new Matrix(result);
         }
-            if (other instanceof Vector) {
-                Vector vector = (Vector) other;
-                double[] result = new double[this.mat.length];
-                if (vector.mas.length == this.mat[0].length) {
-                    for (int i = 0; i < this.mat.length; i++) {
-                        for (int j = 0; j < this.mat[i].length; j++) {
-                            result[i] = result[i] + this.mat[i][j] * (1 / vector.mas[j]);
-                        }
+        if (other instanceof Vector) {
+            Vector vector = (Vector) other;
+            double[] result = new double[this.mat.length];
+            if (vector.mas.length == this.mat[0].length) {
+                for (int i = 0; i < this.mat.length; i++) {
+                    for (int j = 0; j < this.mat[i].length; j++) {
+                        result[i] = result[i] + this.mat[i][j] * (1 / vector.mas[j]);
                     }
-                } else
-                    throw new Exceptions(Translator.WRONG_SIZE);
-                return new Vector(result);
-            }
+                }
+            } else
+                throw new Exceptions(Translator.WRONG_SIZE);
+            return new Vector(result);
+        }
         if (other instanceof Matrix) {
             Matrix matrix = (Matrix) other;
             if ((this.mat[0].length == matrix.mat[0].length) && (this.mat.length == matrix.mat.length)) {
@@ -233,5 +233,43 @@ public class Matrix extends Variable {
             return new Scalar(result);
         }
         return null;
+    }
+
+    @Override
+    public Variable kvadrat(Variable other) throws Exceptions {
+        if (other instanceof Matrix) {
+            Matrix matrix = (Matrix) other;
+            double[][] result = new double[this.mat.length][this.mat[0].length];
+            for (int i = 0; i < this.mat.length; i++) {
+                for (int j = 0; j < this.mat[i].length; j++) {
+
+                    result[i][j] = this.mat[i][j] * this.mat[i][j];
+
+                }
+            }
+            return new Matrix(result);
+        }
+        else{
+            throw new Exceptions(Translator.WRONG_SIZE);
+        }
+    }
+
+    @Override
+    public Variable koren(Variable other) throws Exceptions {
+        if (other instanceof Matrix) {
+            Matrix matrix = (Matrix) other;
+            double[][] result = new double[this.mat.length][this.mat[0].length];
+            for (int i = 0; i < this.mat.length; i++) {
+                for (int j = 0; j < this.mat[i].length; j++) {
+
+                    result[i][j] = Math.sqrt(this.mat[i][j]);
+
+                }
+            }
+            return new Matrix(result);
+        }
+        else{
+            throw new Exceptions(Translator.WRONG_SIZE);
+        }
     }
 }

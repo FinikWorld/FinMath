@@ -200,6 +200,42 @@ public class Vector extends Variable {
             }
             return new Scalar(rez);
         }
-        throw new Exceptions("НЕльзя провести операцию с даннм операндом");
+        throw new Exceptions("Нельзя провести операцию с данным операндом");
+    }
+
+    @Override
+    public Variable kvadrat(Variable other) throws Exceptions {
+        if (other instanceof Vector) {
+            Vector vector = (Vector) other;
+            double[] result = new double[this.mas.length];
+                for (int i = 0; i < this.mas.length; i++) {
+
+                    result[i] = this.mas[i] * this.mas[i];
+
+                }
+                return new Vector(result);
+        }
+        else {
+            throw new Exceptions(Translator.WRONG_SIZE);
+        }
+
+    }
+
+    @Override
+    public Variable koren(Variable other) throws Exceptions {
+        if (other instanceof Vector) {
+            Vector vector = (Vector) other;
+            double[] result = new double[this.mas.length];
+            for (int i = 0; i < this.mas.length; i++) {
+
+                result[i] = Math.sqrt(this.mas[i]);
+
+            }
+            return new Vector(result);
+        }
+        else {
+            throw new Exceptions(Translator.WRONG_SIZE);
+        }
     }
 }
+

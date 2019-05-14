@@ -6,5 +6,6 @@ public interface IOperation {
     public Variable delenie(Variable other) throws Exceptions;
     public Variable summa(Variable other) throws Exceptions;
     public Variable kvadrat(Variable other) throws Exceptions;
+    public Variable koren(Variable other) throws Exceptions;
 }
 

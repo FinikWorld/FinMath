@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/FinMath.iml" filepath="$PROJECT_DIR$/.idea/FinMath.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FinMath.iml" filepath="$PROJECT_DIR$/FinMath.iml" />
     </modules>
   </component>
 </project>

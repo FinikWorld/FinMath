@@ -40,6 +40,7 @@ public class Tester {
 //        System.out.println(resourseManager.get(Translator.END));
 
 //        System.out.println(resourseManager.get(Translator.START));*/
+        System.out.println("Введите пример");
         Scanner cin = new Scanner(System.in);
         Parcer parcer = new Parcer();
         Variable.readVarsFile();

@@ -114,5 +114,16 @@ public class Scalar extends Variable {
         } else
             throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
     }
+
+    @Override
+    public Variable koren(Variable other) throws Exceptions {
+        if (other instanceof Scalar){
+            Scalar chislo = (Scalar) other;
+            double result = Math.sqrt(this.b);
+            return new Scalar(result);
+        }
+        else
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+    }
 }
 

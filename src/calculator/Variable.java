@@ -14,39 +14,36 @@ public class Variable implements IOperation {
 
     @Override
     public Variable slogenie(Variable other) throws Exceptions {
-        throw new Exceptions("Сложение " + this + " + " + other + " невозможно");
-//        throw new Exceptions("Некоректный ввод");
+        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
     }
-
-    // Вместо sout, пробрасывай Exeptions, как показано выше
-
     @Override
     public Variable vichitanie(Variable other) throws Exceptions {
-        System.out.println("Вычитание " + this + " - " + other + " невозможно");
-        return null;
+        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
     }
 
     @Override
     public Variable umnogenie(Variable other) throws Exceptions {
-        System.out.println("Умножение " + this + " * " + other + " невозможно");
-        return null;
+        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
     }
 
     @Override
     public Variable delenie(Variable other) throws Exceptions {
-        System.out.println("Деление " + this + " / " + other + " невозможно");
-        return null;
+        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
     }
 
     @Override
     public Variable summa(Variable other) throws Exceptions {
-//        System.out.println("Сумма равна "+this);
-        return null;
+        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
     }
 
     @Override
     public Variable kvadrat(Variable other) throws Exceptions {
-        return null;
+        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
+    }
+
+    @Override
+    public Variable koren(Variable other) throws Exceptions {
+        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
     }
 
     public static Variable createVar(String apparand) throws Exceptions {

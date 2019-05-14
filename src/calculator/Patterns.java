@@ -5,7 +5,7 @@ final class Patterns {
 
     }
 
-    static final String OPERATIONS = "[-+*/=sk]";
+    static final String OPERATIONS = "[-+*/=skr]";
 //    static final String OPERATIONS = "(?<![-+*/={,s]|\\s|^)([-+=*/s])";
     static final String SCALAR = "-?\\d+(.\\d+)?";
     static final String VECTOR = "\\{((-?\\d+(.\\d+)?)(,?\\s*))+}";
