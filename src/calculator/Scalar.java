@@ -136,7 +136,7 @@ public class Scalar extends Variable {
             double pow = cin.nextInt();
             Scalar chislo = (Scalar) other;
             double result = chislo.b;
-            for (int i = 0; i < pow; i++) {
+            for (int i = 1; i < pow; i++) {
                 result *= chislo.b;
             }
             return new Scalar(result);
