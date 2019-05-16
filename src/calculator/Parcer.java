@@ -16,6 +16,7 @@ public class Parcer {
             this.put("k", 3);
             this.put("r", 4);
             this.put("p", 4);
+            this.put("v", 5);
 
         }
     };
@@ -89,6 +90,8 @@ public class Parcer {
                 return two.koren(two).toString();
             case "p":
                 return two.power(two).toString();
+            case "v":
+                return two.root(two).toString();
         }
         throw new Exceptions("Некоректный ввод");
     }

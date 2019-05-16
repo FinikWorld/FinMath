@@ -51,6 +51,11 @@ public class Variable implements IOperation {
         throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
     }
 
+    @Override
+    public Variable root(Variable other) throws Exceptions {
+        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
+    }
+
     public static Variable createVar(String apparand) throws Exceptions {
         if (apparand.matches(Patterns.SCALAR))
             return new Scalar(apparand);

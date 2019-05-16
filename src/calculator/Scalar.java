@@ -129,6 +129,26 @@ public class Scalar extends Variable {
     }
 
     @Override
+    public Variable root(Variable other) throws Exceptions {
+        if (other instanceof  Scalar){
+            Scanner cin = new Scanner (System.in);
+            System.out.println(Translator.INPUT_ROOT);
+            double pow = cin.nextInt();
+            Scalar chislo = (Scalar) other;
+            double result = Math.pow(chislo.b,1/pow);
+            double recult = Math.round(result);
+            double diff = Math.abs(result-recult);
+            if (diff < Math.ulp(10.0)){
+                return new Scalar(recult);
+            }
+            else
+                throw new Exceptions(Translator.ROOT_PROBLEM);
+        }
+        else
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+    }
+
+    @Override
     public Variable power(Variable other) throws Exceptions {
         if (other instanceof  Scalar){
             Scanner cin = new Scanner (System.in);
