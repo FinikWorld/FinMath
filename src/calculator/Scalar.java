@@ -1,5 +1,7 @@
 import calculator.resource.Translator;
 
+import java.util.Scanner;
+
 public class Scalar extends Variable {
     double b;
 
@@ -120,6 +122,23 @@ public class Scalar extends Variable {
         if (other instanceof Scalar){
             Scalar chislo = (Scalar) other;
             double result = Math.sqrt(this.b);
+            return new Scalar(result);
+        }
+        else
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
+    }
+
+    @Override
+    public Variable power(Variable other) throws Exceptions {
+        if (other instanceof  Scalar){
+            Scanner cin = new Scanner (System.in);
+            System.out.println(Translator.INPUT_POWER);
+            double pow = cin.nextInt();
+            Scalar chislo = (Scalar) other;
+            double result = chislo.b;
+            for (int i = 0; i < pow; i++) {
+                result *= chislo.b;
+            }
             return new Scalar(result);
         }
         else
