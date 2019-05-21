@@ -37,16 +37,6 @@ public class Variable implements IOperation {
     }
 
     @Override
-    public Variable kvadrat(Variable other) throws Exceptions {
-        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
-    }
-
-    @Override
-    public Variable koren(Variable other) throws Exceptions {
-        throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
-    }
-
-    @Override
     public Variable power(Variable other) throws Exceptions {
         throw new Exceptions(Translator.IMPOSSIBLE_ACTION);
     }

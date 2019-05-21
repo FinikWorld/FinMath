@@ -235,7 +235,7 @@ public class Matrix extends Variable {
         return null;
     }
 
-    @Override
+    /*@Override
     public Variable kvadrat(Variable other) throws Exceptions {
         if (other instanceof Matrix) {
             Matrix matrix = (Matrix) other;
@@ -251,10 +251,10 @@ public class Matrix extends Variable {
         }
         else{
             throw new Exceptions(Translator.WRONG_SIZE);
-        }
+        }*/
     }
 
-    @Override
+    /*@Override
     public Variable koren(Variable other) throws Exceptions {
         if (other instanceof Matrix) {
             Matrix matrix = (Matrix) other;
@@ -271,5 +271,5 @@ public class Matrix extends Variable {
         else{
             throw new Exceptions(Translator.WRONG_SIZE);
         }
-    }
-}
+    }*/
+

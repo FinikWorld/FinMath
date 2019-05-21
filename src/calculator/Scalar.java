@@ -106,28 +106,6 @@ public class Scalar extends Variable {
         }
         return super.delenie(other);
     }
-
-    @Override
-    public Variable kvadrat(Variable other) throws Exceptions {
-        if (other instanceof Scalar) {
-            Scalar chislo = (Scalar) other;
-            double result = this.b * chislo.b;
-            return new Scalar(result);
-        } else
-            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
-    }
-
-    @Override
-    public Variable koren(Variable other) throws Exceptions {
-        if (other instanceof Scalar){
-            Scalar chislo = (Scalar) other;
-            double result = Math.sqrt(this.b);
-            return new Scalar(result);
-        }
-        else
-            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
-    }
-
     @Override
     public Variable root(Variable other) throws Exceptions {
         if (other instanceof  Scalar){

@@ -2,6 +2,9 @@
 
 import calculator.resource.Translator;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Vector extends Variable {
     double[] mas;
 
@@ -200,29 +203,29 @@ public class Vector extends Variable {
             }
             return new Scalar(rez);
         }
-        throw new Exceptions("Нельзя провести операцию с данным операндом");
+        throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
     }
 
     @Override
-    public Variable kvadrat(Variable other) throws Exceptions {
-        if (other instanceof Vector) {
+    public Variable power(Variable other) throws Exceptions {
+        if (other instanceof  Vector){
+            Scanner cin = new Scanner (System.in);
+            System.out.println(Translator.INPUT_POWER);
+            double pow = cin.nextInt();
             Vector vector = (Vector) other;
-            double[] result = new double[this.mas.length];
-                for (int i = 0; i < this.mas.length; i++) {
-
-                    result[i] = this.mas[i] * this.mas[i];
-
+            double[] result = Arrays.copyOf(vector.mas, vector.mas.length);
+            for (int i = 0; i <this.mas.length; i++) {
+                for (int j = 1; j < pow; j++) {
+                    result[i] *= vector.mas[i];
                 }
-                return new Vector(result);
+            }
+            return new Vector(result);
         }
-        else {
-            throw new Exceptions(Translator.WRONG_SIZE);
-        }
-
+        else
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
     }
 
-    @Override
-    public Variable koren(Variable other) throws Exceptions {
+    public Variable root(Variable other) throws Exceptions {
         if (other instanceof Vector) {
             Vector vector = (Vector) other;
             double[] result = new double[this.mas.length];
