@@ -1,8 +1,6 @@
 
 
 import calculator.resource.Translator;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Matrix extends Variable {
