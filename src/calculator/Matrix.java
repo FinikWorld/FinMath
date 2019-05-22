@@ -245,7 +245,12 @@ public class Matrix extends Variable {
             System.out.println(Translator.INPUT_POWER);
             double pow = cin.nextInt();
             Matrix matrix = (Matrix) other;
-            double[][] result = Arrays.copyOf(matrix.mat, matrix.mat.length);
+            double[][] result = new double[matrix.mat.length][matrix.mat[0].length];
+            for (int i = 0; i <matrix.mat.length; i++) {
+                for (int j = 0; j <matrix.mat[i].length; j++) {
+                    result[i][j]=matrix.mat[i][j];
+                }
+            }
             for (int i = 0; i < matrix.mat.length; i++) {
                 for (int j = 0; j < matrix.mat[i].length; j++) {
                     for (int k = 0; k < pow-1; k++) {
