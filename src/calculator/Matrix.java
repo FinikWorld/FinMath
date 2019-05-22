@@ -2,6 +2,9 @@
 
 import calculator.resource.Translator;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Matrix extends Variable {
     double[][] mat;
 
@@ -235,29 +238,29 @@ public class Matrix extends Variable {
         return null;
     }
 
-    /*@Override
-    public Variable kvadrat(Variable other) throws Exceptions {
+    @Override
+    public Variable power(Variable other) throws Exceptions {
         if (other instanceof Matrix) {
+            Scanner cin = new Scanner(System.in);
+            System.out.println(Translator.INPUT_POWER);
+            double pow = cin.nextInt();
             Matrix matrix = (Matrix) other;
-            double[][] result = new double[this.mat.length][this.mat[0].length];
-            for (int i = 0; i < this.mat.length; i++) {
-                for (int j = 0; j < this.mat[i].length; j++) {
-
-                    result[i][j] = this.mat[i][j] * this.mat[i][j];
-
+            double[][] result = Arrays.copyOf(matrix.mat, matrix.mat.length);
+            for (int i = 0; i < matrix.mat.length; i++) {
+                for (int j = 0; j < matrix.mat[i].length; j++) {
+                    for (int k = 0; k < pow-1; k++) {
+                        result[i][j] *= matrix.mat[i][j];
+                    }
                 }
             }
             return new Matrix(result);
-        }
-        else{
-            throw new Exceptions(Translator.WRONG_SIZE);
-        }*/
+        } else
+            throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
     }
 
-    /*@Override
-    public Variable koren(Variable other) throws Exceptions {
+    @Override
+    public Variable root(Variable other) throws Exceptions {
         if (other instanceof Matrix) {
-            Matrix matrix = (Matrix) other;
             double[][] result = new double[this.mat.length][this.mat[0].length];
             for (int i = 0; i < this.mat.length; i++) {
                 for (int j = 0; j < this.mat[i].length; j++) {
@@ -267,9 +270,9 @@ public class Matrix extends Variable {
                 }
             }
             return new Matrix(result);
-        }
-        else{
+        } else {
             throw new Exceptions(Translator.WRONG_SIZE);
         }
-    }*/
+    }
+}
 
