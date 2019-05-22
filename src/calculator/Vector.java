@@ -208,20 +208,19 @@ public class Vector extends Variable {
 
     @Override
     public Variable power(Variable other) throws Exceptions {
-        if (other instanceof  Vector){
-            Scanner cin = new Scanner (System.in);
+        if (other instanceof Vector) {
+            Scanner cin = new Scanner(System.in);
             System.out.println(Translator.INPUT_POWER);
             double pow = cin.nextInt();
             Vector vector = (Vector) other;
             double[] result = Arrays.copyOf(vector.mas, vector.mas.length);
-            for (int i = 0; i <this.mas.length; i++) {
+            for (int i = 0; i < this.mas.length; i++) {
                 for (int j = 1; j < pow; j++) {
                     result[i] *= vector.mas[i];
                 }
             }
             return new Vector(result);
-        }
-        else
+        } else
             throw new Exceptions(Translator.MATRIX_WRONG_OPERATION);
     }
 
@@ -235,8 +234,7 @@ public class Vector extends Variable {
 
             }
             return new Vector(result);
-        }
-        else {
+        } else {
             throw new Exceptions(Translator.WRONG_SIZE);
         }
     }
