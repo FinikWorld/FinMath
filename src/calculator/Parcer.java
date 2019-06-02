@@ -15,9 +15,7 @@ public class Parcer {
             this.put("s", 3);
             this.put("p", 3);
             this.put("r", 4);
-/*            this.put("p", 4);
-            this.put("v", 5);*/
-
+            this.put("d", 4);
         }
     };
 
@@ -34,7 +32,6 @@ public class Parcer {
             operations.add(matcher.group());
         }
         if (operations.size() == 0) {
-//                return null;
             return Variable.createVar(string).toString();
         }
         while (operations.size() > 0) {
@@ -88,10 +85,8 @@ public class Parcer {
                 return two.power(two).toString();
             case "r":
                 return two.root(two).toString();
-            /*case "p":
-                return two.power(two).toString();
-            case "v":
-                return two.root(two).toString();*/
+            case "d":
+                return two.determinant(two).toString();
         }
         throw new Exceptions("Некоректный ввод");
     }

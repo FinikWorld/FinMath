@@ -12,7 +12,6 @@ public class Scalar extends Variable {
 
     public Scalar(double b) {
         this.b = b;
-
     }
 
     public Scalar(String b) {

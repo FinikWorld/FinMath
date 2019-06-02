@@ -1,6 +1,8 @@
 
 
 import calculator.resource.Translator;
+
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Matrix extends Variable {
@@ -244,14 +246,14 @@ public class Matrix extends Variable {
             double pow = cin.nextInt();
             Matrix matrix = (Matrix) other;
             double[][] result = new double[matrix.mat.length][matrix.mat[0].length];
-            for (int i = 0; i <matrix.mat.length; i++) {
-                for (int j = 0; j <matrix.mat[i].length; j++) {
-                    result[i][j]=matrix.mat[i][j];
+            for (int i = 0; i < matrix.mat.length; i++) {
+                for (int j = 0; j < matrix.mat[i].length; j++) {
+                    result[i][j] = matrix.mat[i][j];
                 }
             }
             for (int i = 0; i < matrix.mat.length; i++) {
                 for (int j = 0; j < matrix.mat[i].length; j++) {
-                    for (int k = 0; k < pow-1; k++) {
+                    for (int k = 0; k < pow - 1; k++) {
                         result[i][j] *= matrix.mat[i][j];
                     }
                 }
@@ -275,6 +277,60 @@ public class Matrix extends Variable {
             return new Matrix(result);
         } else {
             throw new Exceptions(Translator.WRONG_SIZE);
+        }
+    }
+
+    public Variable determinant(Variable other) throws Exceptions {
+        if (other instanceof Matrix) {
+            int accuracy = 20;
+
+            BigDecimal EPS = BigDecimal.valueOf(0.00000000001);
+
+            int n = this.mat.length;
+            BigDecimal[][] a = new BigDecimal[n][n];
+            for (int i = 0; i < n; ++i)
+                for (int j = 0; j < n; ++j) {
+                    a[i][j] = new BigDecimal(this.mat[i][j]);
+                    a[i][j].setScale(accuracy, BigDecimal.ROUND_HALF_UP);
+                }
+
+            BigDecimal det = new BigDecimal(1.0);
+            det.setScale(accuracy, BigDecimal.ROUND_HALF_UP);
+
+            for (int i = 0; i < n; ++i) {
+                int k = i;
+                for (int j = i + 1; j < n; ++j)
+                    if (a[j][i].abs().compareTo(a[k][i].abs()) > 0)
+                        k = j;
+                if (a[k][i].abs().compareTo(EPS) < 0) {
+                    det = new BigDecimal(0.0);
+                    det.setScale(accuracy, BigDecimal.ROUND_HALF_UP);
+                    break;
+                }
+                BigDecimal[] tmp = a[i];
+                a[i] = a[k];
+                a[k] = tmp;
+
+                if (i != k)
+                    det = det.divide(new BigDecimal(-1), accuracy, BigDecimal.ROUND_HALF_UP);
+                det = det.multiply(a[i][i]);
+                for (int j = i + 1; j < n; ++j)
+                    a[i][j] = a[i][j].divide(a[i][i], accuracy, BigDecimal.ROUND_HALF_UP);
+                for (int j = 0; j < n; ++j)
+                    if (j != i && a[j][i].abs().compareTo(EPS) > 0)
+                        for (int kk = i + 1; kk < n; ++kk) {
+                            BigDecimal aikji = new BigDecimal(1.0);
+                            aikji.setScale(accuracy, BigDecimal.ROUND_HALF_UP);
+                            aikji = aikji.multiply(a[i][kk]);
+                            aikji = aikji.multiply(a[j][i]);
+                            aikji = aikji.multiply(new BigDecimal(-1));
+                            a[j][kk] = a[j][kk].add(aikji);
+                        }
+            }
+
+            det = det.abs();
+            det = det.add(new BigDecimal(0.00001));
+            return det.abs().toBigInteger();
         }
     }
 }
